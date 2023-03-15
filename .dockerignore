@@ -1,0 +1,7 @@
+
+node_modules
+README.md
+.elasticbeanstalk/*
+.git
+.gitignore
+.env

@@ -11,3 +11,11 @@
   font-weight: bolder;
   color: theme.$black-subtle;
 }
+
+.actionButton:hover {
+  background-color: rgb(239, 239, 239);
+}
+
+.actionButton:active {
+  background-color: rgb(214, 212, 212);
+}
