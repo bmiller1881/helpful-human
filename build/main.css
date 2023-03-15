@@ -1,0 +1,19 @@
+._1vn3l1o0 {
+  border-radius: .6rem;
+  padding: 1rem;
+  border: 1px solid black;
+}
+._186yhbl0 {
+  background-color: rgb(53, 61, 61);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+._186yhbl1 {
+  height: 3rem;
+}
+
+html, body {
+  margin: 0;
+  font-family: Source Serif Pro;
+}

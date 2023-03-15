@@ -1,18 +1,39 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
 import path from 'path';
-import express, { json, urlencoded, Request, Response, NextFunction } from 'express';
+import express, {
+  json,
+  urlencoded,
+  Request,
+  Response,
+  NextFunction,
+} from 'express';
+import mongoose from 'mongoose';
+
+import apiRouter from './routes/api';
 
 const app = express();
 
 const PORT = process.env.PORT || '3000';
 
+mongoose
+  .connect(process.env.MONGODB_CONNECTION, {
+    dbName: 'HelpfulHuman',
+  })
+  .then(() => console.log('Connected to Mongo DB.'))
+  .catch((err) => console.log('Mongo DB connection error', err));
+
 app.use(json());
 app.use(urlencoded({ extended: true }));
+app.use('/api', apiRouter);
 
 // serves static files in production mode
 if (process.env.NODE_ENV === 'production') {
   app.use('/build', express.static(path.join(__dirname, '../build')));
   app.get('/*', (req, res) => {
-    return res.status(200).sendFile(path.join(__dirname, '../build/index.html'));
+    return res
+      .status(200)
+      .sendFile(path.join(__dirname, '../build/index.html'));
   });
 }
 

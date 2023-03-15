@@ -14,5 +14,6 @@
     "rootDir": ".",
     "allowJs": true,
     "lib": ["DOM"]
-  }
+  },
+  "include": [".", "imports.d.ts"]
 }

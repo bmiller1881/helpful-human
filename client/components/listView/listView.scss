@@ -1,0 +1,41 @@
+@use '../../theme';
+
+.pagination {
+  padding: 2rem;
+
+  a {
+    color: theme.$grey4;
+    font-size: 1.5rem;
+  }
+
+  .active {
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+    color: black;
+  }
+
+  a:hover:not(.active) {
+    font-size: 2.5rem;
+  }
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .pages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    div {
+      width: 3rem;
+      height: 4rem;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
@@ -16,7 +17,7 @@ module.exports = {
   plugins: [
     new HTMLWebpackPlugin({
       template: './client/index.html',
-      // favicon: '',
+      favicon: './design/logo-symbol.svg',
     }),
   ],
   // details for bundle transpiling
@@ -41,23 +42,42 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        // transpile scss or sass
-        test: /\.s[ac]ss$/i,
-        // creates style nodes from JS strings, translates CSS into Common JS, Compiles SASS to CSS (order matters)
-        use: ['style-loader', 'css-loader', 'sass-loader'],
-      },
-      {
-        // transpile css
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
         test: /\.(jpe?g|png|gif|svg)$/i,
         use: [
           {
             loader: 'url-loader',
             options: {
               name: '[name].[ext]',
+            },
+          },
+        ],
+      },
+      {
+        // transpile scss or sass
+        test: /\.s[ac]ss$/i,
+        // creates style nodes from JS strings, translates CSS into Common JS, Compiles SASS to CSS (order matters)
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true,
+            },
+          },
+          'sass-loader',
+        ],
+      },
+      {
+        // transpile css
+        test: /\.css$/i,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true,
             },
           },
         ],

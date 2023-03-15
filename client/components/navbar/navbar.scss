@@ -1,0 +1,17 @@
+@use '../../theme';
+
+.navbar {
+  z-index: 1;
+  background-color: theme.$grey1;
+  padding: 1rem 2rem;
+  position: fixed;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  img {
+    height: 3rem;
+  }
+}

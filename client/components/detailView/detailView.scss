@@ -1,0 +1,16 @@
+@use '../../theme';
+
+.detailView {
+  padding: 2rem;
+}
+
+.detail {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.clear {
+  text-align: center;
+  padding: 1.5rem;
+}

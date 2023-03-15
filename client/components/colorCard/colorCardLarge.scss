@@ -1,0 +1,25 @@
+@use '../../theme';
+
+.card {
+  margin: 1rem 1rem;
+  border-radius: theme.$edge-radius;
+  box-shadow: 0 0 6px theme.$grey2;
+  width: auto;
+
+  .color {
+    border-radius: theme.$edge-radius theme.$edge-radius 0 0;
+    border: 1px solid black;
+    height: 25rem;
+  }
+  .name {
+    background-color: white;
+    border-radius: 0 0 theme.$edge-radius theme.$edge-radius;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    padding: 0rem 3rem;
+    line-height: 0.5rem;
+    font-size: 3rem;
+    color: theme.$grey4;
+  }
+}
