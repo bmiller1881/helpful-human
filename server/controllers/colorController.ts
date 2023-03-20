@@ -31,6 +31,14 @@ const colorController: ColorController = {
       Number(req.params.increment)
     );
     try {
+      const data = await Colors.deleteMany({});
+    } catch (error) {
+      return next({
+        log: 'colorController.postData: ERROR: ' + error,
+        message: 'colorController.postData: ERROR: Could not create new data',
+      });
+    }
+    try {
       const data = await Colors.insertMany(colorData);
       res.locals.data = data;
       return next();

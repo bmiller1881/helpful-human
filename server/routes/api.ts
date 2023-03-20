@@ -8,7 +8,7 @@ apiRouter.get('/colors/amount/:count', colorController.getData, (req, res) => {
 });
 
 // Route currently only used for populating the database
-/*
+// /*
 apiRouter.post(
   '/colors/total/:total/shadetotal/:shadetotal/tinttotal/:tinttotal/increment/:increment',
   colorController.postData,
@@ -16,6 +16,6 @@ apiRouter.post(
     res.status(200).json(res.locals);
   }
 );
-*/
+// */
 
 export default apiRouter;

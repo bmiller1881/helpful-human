@@ -42,33 +42,92 @@ function rgbToString(rgb: number[]) {
 }
 
 function classifyColor(rgb: number[]) {
-  const colorRanges: { [key: string]: number[] } = {
-    red: [255, 0, 0],
-    orange: [255, 165, 0],
-    yellow: [255, 255, 0],
-    green: [0, 128, 0],
-    blue: [0, 0, 255],
-    purple: [128, 0, 128],
-    brown: [165, 42, 42],
+  const colorRanges: { [key: string]: number[][] } = {
+    red: [
+      [255, 0, 0],
+      [227, 34, 39],
+      [128, 0, 0],
+      [239, 171, 157],
+      [193, 52, 0],
+    ],
+    orange: [
+      [255, 165, 0],
+      [242, 133, 0],
+      [255, 174, 66],
+    ],
+    yellow: [
+      [255, 255, 0],
+      [255, 215, 0],
+      [255, 202, 75],
+      [241, 254, 178],
+    ],
+    green: [
+      [0, 128, 0],
+      [50, 205, 50],
+      [76, 187, 23],
+      [154, 205, 50],
+      [201, 231, 203],
+      [42, 56, 32],
+      [134, 171, 93],
+      [94, 174, 107],
+      [149, 164, 39],
+      [169, 201, 169],
+      [138, 165, 123],
+      [101, 116, 10],
+    ],
+    blue: [
+      [0, 0, 255],
+      [0, 255, 255],
+      [13, 152, 186],
+      [4, 118, 208],
+      [0, 0, 128],
+      [171, 232, 250],
+      [68, 133, 133],
+      [64, 115, 20],
+      [68, 116, 130],
+    ],
+    purple: [
+      [128, 0, 128],
+      [218, 112, 214],
+      [160, 32, 240],
+      [143, 0, 255],
+      [78, 53, 67],
+      [136, 150, 254],
+      [140, 136, 191],
+      [109, 81, 148],
+      [160, 128, 153],
+      [251, 237, 249],
+    ],
+    brown: [
+      [150, 75, 0],
+      [201, 141, 38],
+      [210, 180, 140],
+      [123, 63, 0],
+      [168, 168, 77],
+      [70, 53, 25],
+      [109, 98, 53],
+    ],
   };
   const isGrey =
     Math.max(
       Math.abs(rgb[0] - rgb[1]),
       Math.abs(rgb[1] - rgb[2]),
       Math.abs(rgb[0] - rgb[2])
-    ) < 15;
+    ) < 10;
   if (isGrey) return 'gray';
   let closest = '';
   let distance = Infinity;
   for (const color in colorRanges) {
-    const currDist =
-      (colorRanges[color][0] - rgb[0]) ** 2 +
-      (colorRanges[color][1] - rgb[1]) ** 2 +
-      (colorRanges[color][2] - rgb[2]) ** 2;
-    if (currDist < distance) {
-      closest = color;
-      distance = currDist;
-    }
+    colorRanges[color].forEach((version) => {
+      const currDist =
+        (version[0] - rgb[0]) ** 2 +
+        (version[1] - rgb[1]) ** 2 +
+        (version[2] - rgb[2]) ** 2;
+      if (currDist < distance) {
+        closest = color;
+        distance = currDist;
+      }
+    });
   }
   return closest;
 }
