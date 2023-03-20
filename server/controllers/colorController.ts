@@ -24,6 +24,12 @@ const colorController: ColorController = {
   },
 
   postData: async (req, res, next) => {
+    if (
+      Number(req.params.total) > 5000 ||
+      Number(req.params.shadetotal) > 10 ||
+      Number(req.params.tinttotal)
+    )
+      return next();
     const colorData = getColorData(
       Number(req.params.total),
       Number(req.params.shadetotal),
