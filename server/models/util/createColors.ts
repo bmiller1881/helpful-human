@@ -41,6 +41,38 @@ function rgbToString(rgb: number[]) {
   return `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
 }
 
+function classifyColor(rgb: number[]) {
+  const colorRanges: { [key: string]: number[] } = {
+    red: [255, 0, 0],
+    orange: [255, 165, 0],
+    yellow: [255, 255, 0],
+    green: [0, 128, 0],
+    blue: [0, 0, 255],
+    purple: [128, 0, 128],
+    brown: [165, 42, 42],
+  };
+  const isGrey =
+    Math.max(
+      Math.abs(rgb[0] - rgb[1]),
+      Math.abs(rgb[1] - rgb[2]),
+      Math.abs(rgb[0] - rgb[2])
+    ) < 15;
+  if (isGrey) return 'gray';
+  let closest = '';
+  let distance = Infinity;
+  for (const color in colorRanges) {
+    const currDist =
+      (colorRanges[color][0] - rgb[0]) ** 2 +
+      (colorRanges[color][1] - rgb[1]) ** 2 +
+      (colorRanges[color][2] - rgb[2]) ** 2;
+    if (currDist < distance) {
+      closest = color;
+      distance = currDist;
+    }
+  }
+  return closest;
+}
+
 function getDetailsRGB(
   rgb: number[],
   totalShades: number,
@@ -54,8 +86,10 @@ function getDetailsRGB(
     ShadesRGB: [],
     TintsHex: [],
     TintsRGB: [],
+    Classification: '',
   };
   // calc shades
+  output.Classification += classifyColor(rgb);
   let prevShade = rgb;
   for (let i = 0; i < totalShades; i++) {
     const newShade = [

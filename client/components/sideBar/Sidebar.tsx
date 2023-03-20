@@ -5,6 +5,8 @@ import { FetchOutput } from '../../../types';
 
 type Props = {
   setRandomColors: (randomColor: FetchOutput[]) => void;
+  getSortedColors: (classification: string) => void;
+  setView: (view: string) => void;
 };
 
 function Sidebar(props: Props) {
@@ -20,18 +22,78 @@ function Sidebar(props: Props) {
 
   return (
     <div className={styles.sidebar}>
-      <ActionButton onClick={() => refreshRandomColors(100)}>
+      <ActionButton
+        onClick={() => {
+          refreshRandomColors(100);
+        }}
+      >
         Random Color
       </ActionButton>
       <ul>
-        <li>Red</li>
-        <li>Orange</li>
-        <li>Yellow</li>
-        <li>Green</li>
-        <li>Blue</li>
-        <li>Purple</li>
-        <li>Brown</li>
-        <li>Gray</li>
+        <li
+          onClick={() => {
+            props.getSortedColors('red');
+            props.setView('sorted');
+          }}
+        >
+          Red
+        </li>
+        <li
+          onClick={() => {
+            props.getSortedColors('orange');
+            props.setView('sorted');
+          }}
+        >
+          Orange
+        </li>
+        <li
+          onClick={() => {
+            props.getSortedColors('yellow');
+            props.setView('sorted');
+          }}
+        >
+          Yellow
+        </li>
+        <li
+          onClick={() => {
+            props.getSortedColors('green');
+            props.setView('sorted');
+          }}
+        >
+          Green
+        </li>
+        <li
+          onClick={() => {
+            props.getSortedColors('blue');
+            props.setView('sorted');
+          }}
+        >
+          Blue
+        </li>
+        <li
+          onClick={() => {
+            props.getSortedColors('purple');
+            props.setView('sorted');
+          }}
+        >
+          Purple
+        </li>
+        <li
+          onClick={() => {
+            props.getSortedColors('brown');
+            props.setView('sorted');
+          }}
+        >
+          Brown
+        </li>
+        <li
+          onClick={() => {
+            props.getSortedColors('gray');
+            props.setView('sorted');
+          }}
+        >
+          Gray
+        </li>
       </ul>
     </div>
   );

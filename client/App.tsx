@@ -6,6 +6,7 @@ import { FetchOutput } from '../types';
 
 function App() {
   const [randomColors, setRandomColors] = useState<FetchOutput[]>([]);
+  const [sortedColors, setSortedColors] = useState<FetchOutput[]>([]);
 
   async function getRandomColors(amount: number) {
     try {
@@ -18,13 +19,28 @@ function App() {
     }
   }
 
+  function getSortedColors(classification: string) {
+    const sorted: FetchOutput[] = [];
+
+    randomColors.forEach((color) => {
+      console.log(color.Classification === classification);
+      if (color.Classification === classification) sorted.push(color);
+    });
+    setSortedColors(sorted);
+  }
+
   useEffect(() => {
     getRandomColors(100);
   }, []);
 
   return (
     <div>
-      <Main colors={randomColors} setRandomColors={setRandomColors} />
+      <Main
+        colors={randomColors}
+        sortedColors={sortedColors}
+        setRandomColors={setRandomColors}
+        getSortedColors={getSortedColors}
+      />
     </div>
   );
 }

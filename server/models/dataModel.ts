@@ -8,6 +8,7 @@ const colorsSchema = new Schema({
   ShadesRGB: { type: [String], required: true },
   TintsHex: { type: [String], required: true },
   TintsRGB: { type: [String], required: true },
+  Classification: { type: String, required: true },
 });
 
 const Colors = mongoose.model('colors', colorsSchema);

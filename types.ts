@@ -5,6 +5,7 @@ export type Output = {
   ShadesRGB: string[];
   TintsHex: string[];
   TintsRGB: string[];
+  Classification: '';
 };
 
 export type FetchOutput = {
@@ -16,4 +17,5 @@ export type FetchOutput = {
   ShadesRGB: string[];
   TintsHex: string[];
   TintsRGB: string[];
+  Classification: '';
 };
